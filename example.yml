@@ -1,0 +1,24 @@
+---
+plugins:
+  wordpress-seo:
+    Comment:
+      xpath: "//comment()[contains(., 'Yoast')]"
+      pattern: !ruby/regexp '/optimized with the Yoast(?: WordPress)? SEO plugin v(?<v>[^\s]+)
+        \-|\/ Yoast WordPress SEO plugin\./i'
+      version: true
+    Readme:
+      path: readme.txt
+  stream:
+    Comment:
+      pattern: !ruby/regexp /Stream WordPress user activity plugin v(?<v>\d+\.[\.\d]+)/i
+      version: true
+    Readme:
+      path: readme.txt
+  google-site-kit:
+    MetaTag:
+      class: Xpath
+      xpath: //meta[@name="generator" and contains(@content, "Site Kit")]/@content
+      version: true
+      pattern: !ruby/regexp /Site Kit by Google (?<v>\d+\.[\.\d]+)/i
+    Readme:
+      path: readme.txt

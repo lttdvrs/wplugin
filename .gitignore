@@ -1,0 +1,28 @@
+*.gem
+*.rbc
+/.config
+/coverage/
+/InstalledFiles
+/pkg/
+/spec/reports/
+/spec/examples.txt
+/test/tmp/
+/test/version_tmp/
+/tmp/
+
+# Used by dotenv library to load environment variables.
+# .env
+
+.dat*
+.repl_history
+build/
+*.bridgesupport
+
+/.yardoc/
+/_yardoc/
+/doc/
+/rdoc/
+
+/.bundle/
+/vendor/bundle
+/lib/bundler/man/
