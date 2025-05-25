@@ -5,6 +5,12 @@ require 'psych'
 require 'net/http'
 
 class PluginVersionScanner
+  HEADERS = {
+    "User-Agent" => "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
+    "Accept" => "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+    "Connection" => "keep-alive",
+  }.freeze
+
   def initialize(config, target_url)
      # Initializes the scanner with configuration and target URL.
     @config = load_config(config)
@@ -19,19 +25,21 @@ class PluginVersionScanner
 
   private
 
+
   def fetch_html()
     # Fetch the HTML source code of a site.
-
-    Nokogiri::HTML(URI.open(@target_url), nil, "UTF-8")
+  
+    Nokogiri::HTML(URI.open(@target_url, HEADERS), nil, "UTF-8")
   end
-
-  def fetch_content_from_url()
+  
+  def fetch_content_from_url(url = @target_url)
     # Fetches the content from a given URL
-
-    URI.open(@target_url).read
+  
+    URI.open(url, HEADERS).read
   rescue StandardError
     nil
   end
+  
 
   def fetch_readme_content(plugin_slug, path)
     # Fetches the README content for a given plugin from its directory on a website.
